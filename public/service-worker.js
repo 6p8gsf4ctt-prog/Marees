@@ -1,4 +1,4 @@
-const CACHE = 'marees-v4-2';
+const CACHE = 'marees-v4-3';
 const DATA_CACHE_KEY = '/api/tides?days=30';
 const SHELL = [
   './',

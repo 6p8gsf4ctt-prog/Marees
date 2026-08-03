@@ -9,7 +9,7 @@ let activeView = 'todayView';
 let pendingImport = null;
 let isRefreshing = false;
 
-const APP_VERSION = '4.2.0';
+const APP_VERSION = '4.3.0';
 const STORAGE = {
   preferences: 'marees-preferences-v1',
   previousPreferences: 'marees-preferences-previous-v1',
@@ -433,7 +433,9 @@ function applyPreferences({ rerender = true } = {}) {
   $('solarSetting').checked = preferences.showSolar;
   $('animationsSetting').checked = preferences.animations;
   if (rerender && tideData) {
-    if (activeView === 'todayView') renderSelectedDay(); else renderWeek();
+    if (activeView === 'todayView') renderSelectedDay();
+    else if (activeView === 'weekView') renderWeek();
+    else updateSettingsMetadata();
     renderDataStatus();
   }
 }
@@ -459,21 +461,6 @@ function showToast(message, kind = 'info') {
   toast.hidden = false;
   clearTimeout(showToast.timer);
   showToast.timer = setTimeout(() => { toast.hidden = true; }, 2800);
-}
-function openSettings() {
-  updateSettingsMetadata();
-  $('settingsBackdrop').hidden = false;
-  $('settingsSheet').hidden = false;
-  document.body.classList.add('sheet-open');
-  setTimeout(() => $('closeSettingsButton').focus(), 0);
-}
-function closeSettings() {
-  $('settingsBackdrop').hidden = true;
-  $('settingsSheet').hidden = true;
-  $('importPreview').hidden = true;
-  pendingImport = null;
-  document.body.classList.remove('sheet-open');
-  $('settingsButton').focus();
 }
 function exportPreferences() {
   const now = new Date();
@@ -535,9 +522,6 @@ function restorePreviousPreferences() {
   showToast('Copie locale restaurée', 'success');
 }
 function bindSettings() {
-  $('settingsButton').addEventListener('click', openSettings);
-  $('closeSettingsButton').addEventListener('click', closeSettings);
-  $('settingsBackdrop').addEventListener('click', closeSettings);
   $('timeFormatSetting').addEventListener('change', event => { savePreferences({ ...preferences, timeFormat24: event.target.checked }); applyPreferences(); });
   $('solarSetting').addEventListener('change', event => { savePreferences({ ...preferences, showSolar: event.target.checked }); applyPreferences(); });
   $('animationsSetting').addEventListener('change', event => { savePreferences({ ...preferences, animations: event.target.checked }); applyPreferences({rerender:false}); });
@@ -553,34 +537,36 @@ function bindSettings() {
   $('cancelImportButton').addEventListener('click', () => { $('importPreview').hidden = true; pendingImport = null; });
   $('confirmImportButton').addEventListener('click', confirmImport);
   $('restorePreviousSettingsButton').addEventListener('click', restorePreviousPreferences);
-  document.addEventListener('keydown', event => {
-    if ($('settingsSheet').hidden) return;
-    if (event.key === 'Escape') { closeSettings(); return; }
-    if (event.key === 'Tab') {
-      const focusable = [...$('settingsSheet').querySelectorAll('button:not([disabled]),input:not([disabled]),[tabindex]:not([tabindex="-1"])')].filter(element => !element.hidden && element.offsetParent !== null);
-      if (!focusable.length) return;
-      const first = focusable[0], last = focusable.at(-1);
-      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
-      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
-    }
-  });
 }
 function bindTabs() {
   document.querySelectorAll('.tab').forEach(tab=>tab.addEventListener('click',()=>{
     activeView=tab.dataset.view;
     document.querySelectorAll('.tab').forEach(t=>{t.classList.remove('active');t.removeAttribute('aria-current');});
     document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-    tab.classList.add('active');tab.setAttribute('aria-current','page');$(activeView).classList.add('active');
-    $('dayRailSection').hidden = activeView !== 'todayView';
-    $('dataUpdateCard').hidden = activeView !== 'todayView';
-    if (!$('appError').hidden) $('appError').hidden = activeView !== 'todayView';
-    if(activeView==='todayView') {
+    tab.classList.add('active');
+    tab.setAttribute('aria-current','page');
+    $(activeView).classList.add('active');
+
+    const isToday = activeView === 'todayView';
+    const isWeek = activeView === 'weekView';
+    const isSettings = activeView === 'settingsView';
+    $('dayRailSection').hidden = !isToday;
+    $('dataUpdateCard').hidden = isSettings;
+    $('pageControls').hidden = isSettings;
+    if (!$('appError').hidden) $('appError').hidden = !isToday;
+
+    if (isToday) {
       $('previousDay').setAttribute('aria-label','Jour précédent');
       $('nextDay').setAttribute('aria-label','Jour suivant');
       renderSelectedDay();
-    } else {
+    } else if (isWeek) {
       selectedWeekIndex=Math.floor(todayIndex()/14);
       renderWeek();
+    } else {
+      $('pageTitle').textContent='Réglages';
+      $('fullDate').textContent='Préférences et données';
+      $('todayButton').hidden=true;
+      updateSettingsMetadata();
     }
     window.scrollTo({top:0,behavior:'smooth'});
   }));

@@ -106,3 +106,12 @@ body.sheet-open{overflow:hidden}
 
 button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
 @media(max-width:380px){.day-nav{gap:6px}.header-icon-button,.day-arrow{width:38px;height:38px}.data-update-card{grid-template-columns:28px minmax(0,1fr) 34px;padding-inline:10px}.data-update-copy small{font-size:10px}.settings-scroll{padding-left:12px;padding-right:12px}}
+
+/* V4.3 — état des données en bas de page et Réglages comme onglet dédié. */
+.tab-bar{grid-template-columns:repeat(3,1fr)}
+.data-update-card{margin:28px 0 4px}
+.settings-view .settings-scroll{max-height:none;padding:0 0 24px;overflow:visible}
+.settings-view .settings-group:first-child{margin-top:4px}
+.settings-view .settings-group:last-of-type{margin-bottom:6px}
+.settings-view .import-preview{margin-bottom:6px}
+@media(max-width:380px){.tab-bar{padding-left:8px;padding-right:8px}.tab{font-size:10px}}
