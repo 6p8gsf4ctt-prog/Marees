@@ -15,20 +15,17 @@
 <style>
 /* Onglet Windguru — surcharge ciblée, sans modifier style.css. */
 .tab-bar{grid-template-columns:repeat(4,minmax(0,1fr))}
-.windguru-card{padding:18px;overflow:hidden}
-.windguru-card h2{margin:0 0 3px;font-size:22px}
-.windguru-location{margin:4px 0 0;color:var(--secondary);font-size:14px;font-weight:600}
-.windguru-help{margin:13px 0;color:var(--secondary);font-size:13px;line-height:1.45}
-.windguru-frame{display:block;width:100%;height:590px;border:0;border-radius:12px;background:#fff}
+.windguru-card{padding:0;overflow:hidden}
+.windguru-frame{display:block;width:100%;height:78dvh;min-height:560px;border:0;background:#fff}
 .windguru-frame[hidden],.windguru-offline[hidden]{display:none!important}
-.windguru-offline{margin:16px 0;padding:16px;border:1px solid var(--line);border-radius:12px;font-size:14px}
-.windguru-external{display:inline-block;margin-top:15px;color:var(--accent);font-size:14px;font-weight:600;text-decoration:none}
+.windguru-offline{margin:0;padding:18px;border:0;font-size:14px}
 body.windguru-active #dayRailSection,
 body.windguru-active #pageControls,
 body.windguru-active #todayButton,
 body.windguru-active #dataUpdateCard,
-body.windguru-active #appError{display:none!important}
-@media(max-width:380px){.windguru-card{padding:12px}.tab{padding-inline:1px;font-size:10px}}
+body.windguru-active #appError,
+body.windguru-active .data-footer{display:none!important}
+@media(max-width:380px){.tab{padding-inline:1px;font-size:10px}}
 </style>
 <title>Marées</title>
 </head>
@@ -123,13 +120,9 @@ body.windguru-active #appError{display:none!important}
 </section>
 <section aria-label="Prévisions Windguru" class="view windguru-view" id="windguruView">
   <article class="card windguru-card">
-    <h2>Vent &amp; météo</h2>
-    <p class="windguru-location">Plage du Métro · Tarnos</p>
-    <p class="windguru-help">Vent, rafales, direction, température et prévisions marines sur les prochaines 72 heures. Faites glisser le tableau horizontalement pour voir toutes les heures.</p>
-    <iframe class="windguru-frame" id="windguruFrame" title="Windguru — Plage du Métro, Tarnos" loading="lazy"
-      data-src="https://www.windguru.cz/widget-fcst-iframe.php?s=500968&amp;m=100&amp;uid=wg_fwdg_500968_100_marees&amp;wj=knots&amp;tj=c&amp;waj=m&amp;tij=cm&amp;odh=0&amp;doh=24&amp;fhours=72&amp;hrsm=2&amp;vt=forecasts&amp;lng=fr&amp;idbs=1&amp;p=WINDSPD,GUST,SMER,TMPE,FLHGT,CDC,APCP1s" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-    <p class="windguru-offline" id="windguruOffline" hidden>Le panneau Windguru nécessite une connexion Internet.</p>
-    <a class="windguru-external" href="https://www.windguru.cz/500968" target="_blank" rel="noopener noreferrer">Ouvrir Windguru dans le navigateur</a>
+    <iframe class="windguru-frame" id="windguruFrame" title="Windguru — Anglet, Cavaliers" loading="lazy"
+      data-src="https://www.windguru.cz/widget-fcst-iframe.php?s=856798&amp;m=100&amp;uid=wg_fwdg_856798_100_marees&amp;wj=knots&amp;tj=c&amp;waj=m&amp;tij=cm&amp;odh=0&amp;doh=24&amp;fhours=72&amp;hrsm=2&amp;vt=forecasts&amp;lng=fr&amp;idbs=1&amp;p=WINDSPD,GUST,SMER,TMPE,FLHGT,CDC,APCP1s" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <p class="windguru-offline" id="windguruOffline" hidden>Connexion Internet requise pour afficher Windguru.</p>
   </article>
 </section><section aria-label="Réglages" class="view settings-view" id="settingsView"><div class="settings-scroll">
 <section aria-labelledby="locationSettingsTitle" class="settings-group">

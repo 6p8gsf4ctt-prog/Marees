@@ -1,5 +1,3 @@
-/* Windguru — extension de navigation pour Marées Tarnos V4.3.
-   Les calculs, l'API et les préférences existants restent inchangés. */
 (function () {
   'use strict';
 
@@ -13,14 +11,12 @@
     const offline = !navigator.onLine;
     forecastFrame.hidden = offline;
     offlineMessage.hidden = !offline;
-    // Charger le widget tiers uniquement lorsque l'onglet est réellement ouvert.
     if (!offline && !forecastFrame.src) {
       forecastFrame.src = forecastFrame.dataset.src;
     }
   }
 
   function openWindguru(event) {
-    // Evite que l'ancien gestionnaire d'onglets traite Windguru comme « Réglages ».
     event.stopImmediatePropagation();
     activeView = 'windguruView';
 
@@ -36,19 +32,17 @@
     document.body.classList.add('windguru-active');
 
     document.getElementById('pageTitle').textContent = 'Windguru';
-    document.getElementById('fullDate').textContent = 'Plage du Métro · Tarnos';
+    document.getElementById('fullDate').textContent = 'Anglet · Cavaliers';
     updateForecastAvailability();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Le traitement d'origine écoute les clics en phase « bubble ».
-  // Le nouveau bouton est traité en phase « capture », sans altérer app.js.
   weatherTab.addEventListener('click', openWindguru, true);
 
-  // En quittant Windguru, laisser les trois onglets existants reprendre leur fonctionnement.
   document.querySelectorAll('.tab:not([data-view="windguruView"])').forEach(tab => {
     tab.addEventListener('click', () => {
       document.body.classList.remove('windguru-active');
+      document.querySelector('.eyebrow').textContent = 'TARNOS';
     }, true);
   });
 

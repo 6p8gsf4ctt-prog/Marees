@@ -1,0 +1,1 @@
+Importer ces 3 fichiers dans le dossier public du dépôt GitHub Marees : index.html, service-worker.js et windguru.js.\nIls remplacent la version précédente Windguru par une version minimaliste, centrée sur l'interface Windguru, pour Anglet / Cavaliers.\n
