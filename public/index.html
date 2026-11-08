@@ -15,16 +15,19 @@
 <style>
 /* Onglet Windguru — surcharge ciblée, sans modifier style.css. */
 .tab-bar{grid-template-columns:repeat(4,minmax(0,1fr))}
-.windguru-card{padding:0;overflow:hidden}
-.windguru-frame{display:block;width:100%;height:78dvh;min-height:560px;border:0;background:#fff}
+.windguru-card{padding:0;overflow:hidden;border-radius:12px}
+.windguru-frame{display:block;width:100%;height:375px;border:0;background:#fff}
 .windguru-frame[hidden],.windguru-offline[hidden]{display:none!important}
 .windguru-offline{margin:0;padding:18px;border:0;font-size:14px}
+body.windguru-active .page-header,
 body.windguru-active #dayRailSection,
 body.windguru-active #pageControls,
 body.windguru-active #todayButton,
 body.windguru-active #dataUpdateCard,
 body.windguru-active #appError,
 body.windguru-active .data-footer{display:none!important}
+body.windguru-active .app-shell{padding-top:12px}
+@media(max-width:380px){.windguru-frame{height:355px}}
 @media(max-width:380px){.tab{padding-inline:1px;font-size:10px}}
 </style>
 <title>Marées</title>
@@ -120,8 +123,8 @@ body.windguru-active .data-footer{display:none!important}
 </section>
 <section aria-label="Prévisions Windguru" class="view windguru-view" id="windguruView">
   <article class="card windguru-card">
-    <iframe class="windguru-frame" id="windguruFrame" title="Windguru — Anglet, Cavaliers" loading="lazy"
-      data-src="https://www.windguru.cz/widget-fcst-iframe.php?s=856798&amp;m=100&amp;uid=wg_fwdg_856798_100_marees&amp;wj=knots&amp;tj=c&amp;waj=m&amp;tij=cm&amp;odh=0&amp;doh=24&amp;fhours=72&amp;hrsm=2&amp;vt=forecasts&amp;lng=fr&amp;idbs=1&amp;p=WINDSPD,GUST,SMER,TMPE,FLHGT,CDC,APCP1s" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <iframe class="windguru-frame" id="windguruFrame" title="Windguru — Anglet" loading="lazy"
+      data-src="https://www.windguru.cz/widget-fcst-iframe.php?s=48572&amp;m=100&amp;mw=46&amp;uid=wg_fwdg_48572_100_marees&amp;wj=knots&amp;tj=c&amp;waj=m&amp;tij=cm&amp;odh=0&amp;doh=24&amp;fhours=72&amp;hrsm=2&amp;vt=forecasts&amp;lng=fr&amp;idbs=1&amp;p=WINDSPD,GUST,SMER,HTSGW,PERPW,DIRPW,TMP,CDC,APCP1s,RATING" referrerpolicy="strict-origin-when-cross-origin"></iframe>
     <p class="windguru-offline" id="windguruOffline" hidden>Connexion Internet requise pour afficher Windguru.</p>
   </article>
 </section><section aria-label="Réglages" class="view settings-view" id="settingsView"><div class="settings-scroll">

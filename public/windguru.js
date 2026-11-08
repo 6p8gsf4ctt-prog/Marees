@@ -32,7 +32,8 @@
     document.body.classList.add('windguru-active');
 
     document.getElementById('pageTitle').textContent = 'Windguru';
-    document.getElementById('fullDate').textContent = 'Anglet · Cavaliers';
+    document.querySelector('.eyebrow').textContent = 'ANGLET';
+    document.getElementById('fullDate').textContent = 'Anglet';
     updateForecastAvailability();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
