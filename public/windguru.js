@@ -33,7 +33,7 @@
 
     document.getElementById('pageTitle').textContent = 'Windguru';
     document.querySelector('.eyebrow').textContent = 'ANGLET';
-    document.getElementById('fullDate').textContent = 'Anglet';
+    document.getElementById('fullDate').textContent = 'Prévisions horaires';
     updateForecastAvailability();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }

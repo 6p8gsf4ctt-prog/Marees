@@ -1,4 +1,4 @@
-const CACHE = 'marees-v4-3-windguru-anglet-48572';
+const CACHE = 'marees-v4-3-windguru-anglet-entete';
 const DATA_CACHE_KEY = '/api/tides?days=30';
 const SHELL = [
   './',
