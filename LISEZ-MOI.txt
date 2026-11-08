@@ -1,0 +1,50 @@
+MARÉES TARNOS — ONGLET WINDGURU
+================================
+
+Dépôt : https://github.com/6p8gsf4ctt-prog/Marees
+Dossier ciblé : public/
+
+Fichiers directement prêts à déposer (sans script d'installation) :
+
+1) public/index.html          À REMPLACER
+2) public/service-worker.js  À REMPLACER
+3) public/windguru.js        À AJOUTER
+
+INSTALLATION MANUELLE SUR GITHUB
+--------------------------------
+
+1. Décompresser l'archive ZIP sur votre ordinateur.
+2. Ouvrir https://github.com/6p8gsf4ctt-prog/Marees/tree/main/public
+3. Cliquer sur « Add file » puis « Upload files ».
+4. Sélectionner EN MÊME TEMPS les trois fichiers contenus dans le
+   dossier public décompressé. Ne pas téléverser directement le ZIP.
+5. Vérifier les noms des fichiers et leur dossier de destination : public/.
+6. Enregistrer la modification avec « Commit changes » (branche main).
+7. Si le déploiement automatique Cloudflare est toujours configuré,
+   surveiller le déploiement et ouvrir ensuite l'application :
+   https://marees.jpbm62n289.workers.dev/
+8. Si l'ancien menu apparaît, recharger la page. Fermer puis rouvrir
+   l'application installée si son cache n'a pas été actualisé.
+
+CE QUI CHANGE
+-------------
+- Nouvel onglet « Windguru » avec le spot Plage du Métro à Tarnos (500968).
+- Prévisions Windguru 72 h chargées uniquement quand l'onglet est ouvert.
+- Lien direct Windguru en cas d'indisponibilité du tableau.
+- Nouvelle version du cache de l'application installable.
+
+CE QUI NE CHANGE PAS
+-------------------
+- API et calculs de marée.
+- Fichiers public/app.js et public/style.css.
+- Réglages, sources de données et fonctionnement des marées hors ligne.
+- Code serveur src/index.js et clé secrète Cloudflare.
+
+LIMITES
+-------
+- Le panneau tiers Windguru requiert Internet et son affichage dépend de
+  la disponibilité et des règles d'intégration de Windguru.
+- La syntaxe JavaScript a été contrôlée, mais le rendu final du tableau
+  doit être vérifié sur l'application déployée.
+- Ces fichiers correspondent à la version 4.3 du dépôt vérifiée le
+  8 novembre 2026. Si le dépôt a changé entre-temps, vérifier les écarts.

@@ -1,10 +1,11 @@
-const CACHE = 'marees-v4-3';
+const CACHE = 'marees-v4-3-windguru';
 const DATA_CACHE_KEY = '/api/tides?days=30';
 const SHELL = [
   './',
   './index.html',
   './style.css',
   './app.js',
+  './windguru.js',
   './manifest.webmanifest',
   './icons/icon-192.png',
   './icons/icon-512.png',
